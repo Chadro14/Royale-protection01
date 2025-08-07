@@ -1,0 +1,13 @@
+json
+{
+  "name": "royal-protector",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.6.6"
+  }
+}
+```
