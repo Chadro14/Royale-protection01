@@ -1,4 +1,4 @@
-`js
+js
 exports.commands = {
   menu: async (sock, from) => {
     await sock.sendMessage(from, {
@@ -64,6 +64,4 @@ else
 }
 
 module.exports = { banCommand };
-```
 
----
