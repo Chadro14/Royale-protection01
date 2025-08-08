@@ -27,7 +27,19 @@
 - `.antilink on/off` → Bloque les liens suspects  
 - `.adduser <numéro>` → Autorise un utilisateur  
 - `.statut` → Affiche l’état du bot  
-- `.service` → Contacte l’assistance  
+- `.service` → Contacte l’assistance
+
+  fork repo
+
+  
+<p align="center">
+  <a href="https://github.com/Chadro14/Royale-protection01/fork" target="_blank">
+    <img src="https://img.shields.io/badge/Fork%20on-GitHub-181717?style=for-the-badge&logo=github" alt="Fork on GitHub" />
+  </a>
+</p>
+```
+
+Tu peux le coller dans ton fichier `README.md` pour un rendu visuel stylé.
 
 
 
