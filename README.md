@@ -1,11 +1,7 @@
 
 
 
-
-
-
-
-```md
+md
 <p align="center">
   <h1>
     <span style="color:#e91e63; font-weight:bold; animation: glow 1.5s ease-in-out infinite alternate;">
@@ -25,14 +21,14 @@
 }
 </style>
 
----
+
 
 Royale Protection - Bot WhatsApp Anti-Piratage & Sécurité
 
 Un bot WhatsApp puissant qui protège vos sessions contre le piratage, les spams et les scripts malveillants.  
 Gestion facile par commandes, administration sécurisée, et fonctionnalités avancées pour protéger vos clients.
 
----
+
 
 🚀 Déploiement
 
@@ -65,7 +61,7 @@ Clique sur les boutons pour déployer ou forker ce projet rapidement.
   </a>
 </p>
 
----
+
 
 📜 Description
 
@@ -87,24 +83,24 @@ Il inclut des commandes puissantes telles que :
 📖 Utilisation
 
 1. Clone le repo :  
-   ```bash
+   bash
    git clone https://github.com/Chadro14/Royale-protection01.git
    cd Royale-protection01
-   ```
+   
 
 2. Installe les dépendances :  
-   ```bash
+   bash
    npm install
-   ```
+   
 
 3. Configure ton fichier `.env` avec les variables nécessaires (numéro admin, clés, etc.).
 
 4. Lance le bot :  
-   ```bash
+   bash
    npm start
    ```
 
----
+
 
 🙏 Remerciements
 
@@ -114,5 +110,5 @@ Développé avec ❤️ par Son Altesse Royale 🌹
 ---
 
 <p align="center">© 2025 Son Altesse Royale</p>
-```
+
 
