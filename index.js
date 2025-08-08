@@ -43,5 +43,18 @@ async function startBot() {
 startBot();
 ```
 
+```js
+const { banCommand } = require('./commands');
+
+async function main() {
+  const usernameToBan = "user123"; // exemple
+  const response = await banCommand(usernameToBan);
+  console.log(response);
+}
+
+main();
+```
+
 ---
+  
   
