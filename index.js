@@ -55,6 +55,22 @@ async function main() {
 main();
 
 
+js
+const commands = {
+  antivirus: require('./antivirus'),
+  antispam: require('./antispam'),
+  antiban: require('./antiban'),
+  antilink: require('./antilink'),
+  antihack: require('./antihack'),
+  protection: require('./protection')
+};
+
+module.exports = async (m, prefix, command, args) => {
+  if (commands[command]) {
+    await commands[command].execute(m, args);
+  }
+};
+
 
   
   
