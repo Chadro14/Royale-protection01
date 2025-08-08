@@ -1,6 +1,6 @@
 
 
-```js
+js
 // premium.js
 const premiumUsers = new Set(); // Stock en mémoire (à améliorer avec DB pour persistance)
 
@@ -20,4 +20,4 @@ function isPremium(userId) {
 }
 
 module.exports = { addPremium, removePremium, isPremium };
-```
+
