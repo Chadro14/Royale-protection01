@@ -1,5 +1,5 @@
 
-```python
+python
 import sys
 import json
 
@@ -12,5 +12,5 @@ if _name_ == "_main_":
     user = sys.argv[1] if len(sys.argv) > 1 else ""
     result = {"banned": check_ban(user)}
     print(json.dumps(result))
-```
+
 
