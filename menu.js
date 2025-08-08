@@ -1,6 +1,6 @@
 
 
-```js
+js
 const sendMenu = async (msg) => {
   const menuText = `
 ╔═════════════════════════════╗
