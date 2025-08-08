@@ -29,8 +29,8 @@
 - `.statut` → Affiche l’état du bot  
 - `.service` → Contacte l’assistance
 
-  fork repo
-
+ # Fork repo
+____________
   
 <p align="center">
   <a href="https://github.com/Chadro14/Royale-protection01/fork" target="_blank">
@@ -39,7 +39,7 @@
 </p>
 ```
 
-Tu peux le coller dans ton fichier `README.md` pour un rendu visuel stylé.
+
 
 
 
