@@ -1,6 +1,10 @@
 
 
 
+
+
+
+
 md
 <p align="center">
   <h1>
@@ -23,10 +27,13 @@ md
 
 
 
+
+
 Royale Protection - Bot WhatsApp Anti-Piratage & Sécurité
 
 Un bot WhatsApp puissant qui protège vos sessions contre le piratage, les spams et les scripts malveillants.  
 Gestion facile par commandes, administration sécurisée, et fonctionnalités avancées pour protéger vos clients.
+
 
 
 
