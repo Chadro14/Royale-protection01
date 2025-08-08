@@ -1,5 +1,5 @@
 
-```js
+js
 const { default: makeWASocket, useMultiFileAuthState } = require('@whiskeysockets/baileys');
 const { commands } = require('./commands');
 const { ADMIN_CODE, ADMIN_NUMBER, PREFIX } = require('./config');
@@ -41,9 +41,9 @@ async function startBot() {
 }
 
 startBot();
-```
 
-```js
+
+js
 const { banCommand } = require('./commands');
 
 async function main() {
@@ -53,8 +53,8 @@ async function main() {
 }
 
 main();
-```
 
----
+
+
   
   
