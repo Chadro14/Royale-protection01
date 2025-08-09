@@ -1,24 +1,29 @@
-
 json
 {
-  "name": "royal-protector",
+  "name": "royale-protection-bot",
   "version": "1.0.0",
+  "description": "Bot WhatsApp Royale Protection développé par Son Altesse Royale 🌹",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
+  "keywords": [
+    "bot",
+    "whatsapp",
+    "protection",
+    "anti-piratage",
+    "royale",
+    "altesse"
+  ],
+  "author": "Son Altesse Royale 🌹",
+  "license": "MIT",
   "dependencies": {
-    "@whiskeysockets/baileys": "^6.6.6"
+    "@adiwajshing/baileys": "^6.7.0",
+    "pino": "^8.0.0",
+    "fs-extra": "^11.2.0",
+    "chalk": "^5.3.0",
+    "axios": "^1.6.0",
+    "moment": "^2.29.4"
   }
-}
-`json
-{
-  "name": "bot-protection",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "dependencies": {}
 }
 
