@@ -76,3 +76,6 @@ sock.ev.on('messages.upsert', async ({ messages }) => {
       sock.sendMessage(sender, { text: config.messages.error });
   }
 });
+
+js
+const config = require('./config');
