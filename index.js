@@ -1,76 +1,78 @@
 
 js
-const { default: makeWASocket, useMultiFileAuthState } = require('@whiskeysockets/baileys');
-const { commands } = require('./commands');
-const { ADMIN_CODE, ADMIN_NUMBER, PREFIX } = require('./config');
+const { default: makeWASocket, useSingleFileAuthState } = require('@adiwajshing/baileys');
+const { Boom } = require('@hapi/boom');
+const fs = require('fs');
+const config = require('./config');
+const { state, saveState } = useSingleFileAuthState('./session.json');
 
-async function startBot() {
-  const { state, saveCreds } = await useMultiFileAuthState('session');
-  const sock = makeWASocket({ auth: state, printQRInTerminal: true });
+// Initialisation
+const sock = makeWASocket({
+  auth: state,
+  printQRInTerminal: true
+});
+sock.ev.on('creds.update', saveState);
 
-  sock.ev.on('creds.update', saveCreds);
-
-  sock.ev.on('messages.upsert', async ({ messages }) => {
-    const msg = messages[0];
-    if (!msg.message || msg.key.fromMe) return;
-
-    const from = msg.key.remoteJid;
-    const sender = msg.key.participant || msg.key.remoteJid;
-    const body = msg.message.conversation || msg.message.extendedTextMessage?.text;
-    if (!body || !body.startsWith(PREFIX)) return;
-
-    const args = body.slice(PREFIX.length).trim().split(/ +/);
-    args.shift().toLowerCase();
-
-    // Admin code check
-    if (cmd === ADMIN_CODE) {
-      if (sender.includes(ADMIN_NUMBER)) {
-        return sock.sendMessage(from, { text: '🔐 Accès admin confirmé.' });
-      } else {
-        return sock.sendMessage(from, { text: '⛔ Code réservé à l\'admin.' });
-      }
-    }
-
-    // Command execution
-    if (commands[cmd]) {
-      return commands[cmd](sock, from, sender);
-    } else {
-      return sock.sendMessage(from, { text: '❓Commande inconnue. Tape .menu' });
-    }
-  });
-}
-
-startBot();
-
-
-js
-const { banCommand } = require('./commands');
-
-async function main() {
-  const usernameToBan = "user123"; // exemple
-  const response = await banCommand(usernameToBan);
-  console.log(response);
-}
-
-main();
-
-
-js
+// Commandes actives/inactives
 const commands = {
-  antivirus: require('./antivirus'),
-  antispam: require('./antispam'),
-  antiban: require('./antiban'),
-  antilink: require('./antilink'),
-  antihack: require('./antihack'),
-  protection: require('./protection')
+  antispam: false,
+  antibann: false,
+  antivirus: false,
+  antilink: false,
+  antihack: false
 };
 
-module.exports = async (m, prefix, command, args) => {
-  if (commands[command]) {
-    await commands[command].execute(m, args);
+// Réception des messages
+sock.ev.on('messages.upsert', async ({ messages }) => {
+  const msg = messages[0];
+  if (!msg.message || msg.key.fromMe) return;
+
+  const sender = msg.key.remoteJid;
+  const message = msg.message.conversation || msg.message.extendedTextMessage?.text || '';
+  if (!message.startsWith(config.prefix)) return;
+
+  const args = message.slice(config.prefix.length).trim().split(/ +/);
+  const command = args.shift().toLowerCase();
+  const isOwner = config.ownerNumber.includes(sender.split('@')[0]);
+
+  const toggle = (name) => {
+    
+    if (!isOwner) return sock.sendMessage(sender, { text: config.messages.onlyOwner });
+    commands[name] = !commands[name];
+    sock.sendMessage(sender, {
+      text: `✅ name est maintenant{commands[name] ? 'activé' : 'désactivé'}`
+    });
+  };
+
+  switch (command) {
+    case 'antispam':
+    case 'antibann':
+    case 'antivirus':
+    case 'antilink':
+    case 'antihack':
+      toggle(command);
+      break;
+
+    case 'statut':
+      sock.sendMessage(sender, {
+        text:
+          `🔒 *Statut de Royale Protection*\n\n` +
+          `📌 Anti-Spam: commands.antispam ? '✅' : '❌'` +
+          `📌 Anti-Bann:{commands.antibann ? '✅' : '❌'}\n` +
+          `📌 Antivirus: commands.antivirus ? '✅' : '❌'` +
+          `📌 Anti-Link:{commands.antilink ? '✅' : '❌'}\n` +
+          `📌 Anti-Hack: ${commands.antihack ? '✅' : '❌'}\n\n` +
+          `👑 Développé par Son Altesse Royale 🌹`
+      });
+      break;
+
+    case 'service':
+      sock.sendMessage(sender, {
+        text: `📞 Service client WhatsApp : https://wa.me/243905526836\n📢 Chaîne WhatsApp : https://whatsapp.com/channel/0029Vb5xgT01CYoIzsmkzj1B`
+      });
+      break;
+
+    default:
+      sock.sendMessage(sender, { text: config.messages.error });
   }
-};
-
-
-  
-  
+});
