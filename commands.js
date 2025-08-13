@@ -1,39 +1,42 @@
-// La variable `sock` est l'objet de connexion à WhatsApp,
-// `m` est l'objet message, `args` sont les arguments de la commande.
-module.exports = (sock, m, args) => {
-  const config = require('./config'); // On importe le fichier de config ici pour l'utiliser
+const config = require('./config');
+const menu = require('./menu');
+const premiumCommands = require('./premium'); // Importe les commandes premium
+const ownerCommands = require('./propriétaire'); // Importe les commandes du propriétaire
 
-  return {
+module.exports = (sock, m, args) => {
+  const senderIsOwner = m.key.remoteJid.includes(config.adminNumber); // Vérifie si l'expéditeur est le propriétaire
+
+  // Regroupe toutes les commandes dans un seul objet
+  const allCommands = {
+    ...ownerCommands(sock, m, args), // Ajoute les commandes du propriétaire
+    ...premiumCommands(sock, m, args), // Ajoute les commandes premium
+    
+    // Commandes publiques
     antiban: async () => {
-      // Logique pour l'antiban ici
       await sock.sendMessage(m.key.remoteJid, {
         text: `🛡️ La fonction Anti-Ban est activée.`
       });
     },
 
     antivirus: async () => {
-      // Logique pour l'antivirus ici
       await sock.sendMessage(m.key.remoteJid, {
         text: `🦠 La fonction Anti-Virus est activée. Le bot est en alerte.`
       });
     },
 
     antispam: async () => {
-      // Logique pour l'antispam ici
       await sock.sendMessage(m.key.remoteJid, {
         text: `🚫 La fonction Anti-Spam est activée.`
       });
     },
 
     antihack: async () => {
-      // Logique pour l'antihack ici
       await sock.sendMessage(m.key.remoteJid, {
         text: `🚨 La fonction Anti-Hack est activée. Le bot surveille les activités suspectes.`
       });
     },
 
     adduser: async () => {
-      // Logique pour ajouter un utilisateur ici
       const numToAdd = args[0];
       if (numToAdd) {
         await sock.sendMessage(m.key.remoteJid, {
@@ -47,31 +50,19 @@ module.exports = (sock, m, args) => {
     },
 
     statut: async () => {
-      // Logique pour le statut du bot ici
       await sock.sendMessage(m.key.remoteJid, {
         text: `🟢 Statut du bot : En ligne et fonctionnel.`
       });
     },
 
     protection: async () => {
-      // Logique pour la protection ici
       await sock.sendMessage(m.key.remoteJid, {
         text: `🛡️ Royal Protection est actif et protège votre groupe contre les menaces.`
       });
     },
 
     aide: async () => {
-      // Commande d'aide pour lister toutes les commandes
-      const aideMessage = `Voici les commandes disponibles :\n` +
-                          `\n.antiban - Active la protection contre les bans.` +
-                          `\n.antivirus - Surveille les fichiers suspects.` +
-                          `\n.antispam - Bloque le spam.` +
-                          `\n.antihack - Protège contre les attaques.` +
-                          `\n.adduser <numéro> - Ajoute un utilisateur.` +
-                          `\n.statut - Vérifie le statut du bot.` +
-                          `\n.protection - Affiche l'état de la protection.` +
-                          `\n.channel - Affiche le lien de la chaîne admin.` +
-                          `\n\nRoyal Protection v1.0`;
+      const aideMessage = menu();
       await sock.sendMessage(m.key.remoteJid, {
         text: aideMessage
       });
@@ -88,37 +79,9 @@ module.exports = (sock, m, args) => {
       await sock.sendMessage(m.key.remoteJid, {
         text: config.defaultMessage
       });
-    }
-  };
-};
-    
-
-
-const config = require('./config');
-const menu = require('./menu');
-
-module.exports = (sock, m, args) => {
-  return {
-    // ... (vos autres commandes restent ici) ...
-
-    aide: async () => {
-      // Appelle la fonction de menu pour obtenir le texte complet
-      const aideMessage = menu(); 
-      await sock.sendMessage(m.key.remoteJid, {
-        text: aideMessage
-      });
     },
-
-    channel: async () => {
-      await sock.sendMessage(m.key.remoteJid, {
-        text: `🔗 Rejoignez notre chaîne officielle ici : ${config.channelLink}`
-      });
-    },
-
-    default: async () => {
-      await sock.sendMessage(m.key.remoteJid, {
-        text: config.defaultMessage
-      });
-    }
   };
+  
+  // Retourne la fonction de la commande en fonction de qui l'envoie
+  return allCommands;
 };
