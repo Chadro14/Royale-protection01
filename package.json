@@ -1,29 +1,21 @@
-
 {
-  "name": "royale-protection-bot",
+  "name": "royal-protection-bot",
   "version": "1.0.0",
-  "description": "Bot WhatsApp sécurisé, développé par Son Altesse Royale 🌹",
+  "description": "Un bot WhatsApp de protection pour la sécurité des groupes.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "keywords": [
-    "bot",
     "whatsapp",
+    "bot",
     "protection",
-    "antispam",
-    "security",
-    "royale",
-    "altesse"
+    "royal"
   ],
-  "author": "Son Altesse Royale 🌹",
-  "license": "MIT",
+  "author": "Son Altesse",
+  "license": "ISC",
   "dependencies": {
-    "@adiwajshing/baileys": "^6.7.0",
-    "@hapi/boom": "^10.0.1",
-    "chalk": "^5.3.0",
-    "fs-extra": "^11.2.0",
-    "moment": "^2.29.4",
-    "pino": "^8.0.0"
+    "@whiskeysockets/baileys": "^6.5.0",
+    "pino": "^8.16.0"
   }
 }
