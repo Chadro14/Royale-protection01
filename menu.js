@@ -1,31 +1,24 @@
+const config = require('./config');
 
+const menu = () => {
+    const header = `╔═══════════════════╗\n` +
+                   `║   ${config.botName}   ║\n` +
+                   `╚═══════════════════╝\n\n` +
+                   `Voici les commandes disponibles :\n\n`;
 
-js
-const sendMenu = async (msg) => {
-  const menuText = `
-╔═════════════════════════════╗
-║       👑 Royal Protection 👑       ║
-╚═════════════════════════════╝
+    const commands = `🛡️ *.antiban* - Active la protection contre les bans.\n` +
+                     `🦠 *.antivirus* - Surveille les fichiers suspects.\n` +
+                     `🚫 *.antispam* - Bloque le spam.\n` +
+                     `🚨 *.antihack* - Protège contre les attaques.\n` +
+                     `➕ *.adduser* <numéro> - Ajoute un utilisateur.\n` +
+                     `🟢 *.statut* - Vérifie le statut du bot.\n` +
+                     `🌟 *.protection* - Affiche l'état de la protection.\n` +
+                     `🔗 *.channel* - Affiche le lien de la chaîne admin.\n` +
+                     `📜 *.aide* - Affiche ce menu d'aide.\n`;
 
-✨ *Commandes Disponibles :* ✨
+    const footer = `\n\nby son Altesse`;
 
-🛡️  *antispam*           ➤ Protection contre les spams  
-🦠  *antivirus*          ➤ Analyse et suppression de virus  
-🔗  *antilink*           ➤ Blocage automatique des liens  
-👑  *propriétaire*        ➤ Infos sur le propriétaire  
-📞  *service*             ➤ Support client et assistance  
-🛡️  *protection*          ➤ Activation de la protection VIP  
-➕  *ajouterutilisateur*  ➤ Ajouter un utilisateur autorisé  
-⛔  *interdire*            ➤ Interdire un utilisateur suspect  
-📊  *statut*              ➤ Voir le statut actuel du bot  
-
-───────────────────────────────
-
-🌹 *Créé par Son Altesse Royal* 🌹
-`;
-
-  await msg.reply(menuText);
+    return header + commands + footer;
 };
 
-module.exports = { sendMenu };
-``
+module.exports = menu;
