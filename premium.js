@@ -1,23 +1,10 @@
-
-
-js
-// premium.js
-const premiumUsers = new Set(); // Stock en mémoire (à améliorer avec DB pour persistance)
-
-// Ajouter un utilisateur premium
-function addPremium(userId) {
-  premiumUsers.add(userId);
-}
-
-// Retirer un utilisateur premium
-function removePremium(userId) {
-  premiumUsers.delete(userId);
-}
-
-// Vérifier si utilisateur est premium
-function isPremium(userId) {
-  return premiumUsers.has(userId);
-}
-
-module.exports = { addPremium, removePremium, isPremium };
-
+module.exports = (sock, m, args) => {
+  return {
+    premiuminfo: async () => {
+      await sock.sendMessage(m.key.remoteJid, {
+        text: "👑 Vous êtes un utilisateur premium. Vos commandes spéciales sont en cours de développement !",
+      });
+    },
+    // Ajoutez d'autres commandes premium ici
+  };
+};
