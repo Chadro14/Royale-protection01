@@ -92,3 +92,33 @@ module.exports = (sock, m, args) => {
   };
 };
     
+
+
+const config = require('./config');
+const menu = require('./menu');
+
+module.exports = (sock, m, args) => {
+  return {
+    // ... (vos autres commandes restent ici) ...
+
+    aide: async () => {
+      // Appelle la fonction de menu pour obtenir le texte complet
+      const aideMessage = menu(); 
+      await sock.sendMessage(m.key.remoteJid, {
+        text: aideMessage
+      });
+    },
+
+    channel: async () => {
+      await sock.sendMessage(m.key.remoteJid, {
+        text: `🔗 Rejoignez notre chaîne officielle ici : ${config.channelLink}`
+      });
+    },
+
+    default: async () => {
+      await sock.sendMessage(m.key.remoteJid, {
+        text: config.defaultMessage
+      });
+    }
+  };
+};
