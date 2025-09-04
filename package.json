@@ -1,21 +1,22 @@
 {
-  "name": "royal-protection-bot",
+  "name": "royal-protection01",
   "version": "1.0.0",
-  "description": "Un bot WhatsApp de protection pour la sécurité des groupes.",
+  "description": "Un bot WhatsApp pour Royal Protection, utilisant Baileys.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js"
   },
   "keywords": [
     "whatsapp",
     "bot",
-    "protection",
-    "royal"
+    "baileys",
+    "royal-protection",
+    "node.js"
   ],
-  "author": "Son Altesse",
+  "author": "Altesse",
   "license": "ISC",
   "dependencies": {
-    "@whiskeysockets/baileys": "^6.5.0",
-    "pino": "^8.16.0"
+    "@whiskeysockets/baileys": "latest"
   }
 }
